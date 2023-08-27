@@ -1,5 +1,8 @@
 name: honkit-build-page
 description: A composite action for building your book website pages using Honkit
+branding:
+  icon: "grid"
+  color: "green"
 
 inputs:
   nodejs-version:
