@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "gitbook-plugin-summary": "^1.1.0",
     "honkit": "^5.0.0",
     "honkit-plugin-sitemap": "^1.0.2"
   }

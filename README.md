@@ -1,1 +1,1 @@
-# honkit-build-page
+./test/README.md

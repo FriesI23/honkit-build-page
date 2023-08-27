@@ -1,0 +1,10 @@
+{
+    "language": "en",
+    "plugins": [ "sitemap" ],
+    "pluginsConfig": {
+        "sitemap": {
+            "url": "https://friesi23.github.io",
+            "pathSuffix": "/honkit-build-page/"
+        }
+    }
+}
