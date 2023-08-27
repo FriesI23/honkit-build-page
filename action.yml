@@ -1,0 +1,48 @@
+name: honkit-build-page
+description: A composite action for building your book website pages using Honkit
+
+inputs:
+  nodejs-version:
+    description: Node.js version required for building pages
+    default: 18.x
+    required: true
+  output-sitedir:
+    description: Final directory where the book site is stored
+    default: "_site"
+    required: false
+  working-directory:
+    description: "The working directory for this action"
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - name: Init Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ inputs.nodejs-version }}
+
+    - name: Install dependencies
+      working-directory: ${{ inputs.working-directory }}
+      shell: bash
+      run: npm install
+
+    - name: Build pages
+      working-directory: ${{ inputs.working-directory }}
+      shell: bash
+      run: npx honkit build
+
+    - name: Check output
+      working-directory: ${{ inputs.working-directory }}
+      shell: bash
+      run: |
+        if [ ! -d "_book" ]; then
+          echo "Book site doesn't exist."
+          exit 1
+        fi
+
+    - name: Move _book
+      if: ${{ inputs.output-sitedir != '' }}
+      working-directory: ${{ inputs.working-directory }}
+      shell: bash
+      run: cp -rf _book ${{ inputs.output-sitedir }}
